@@ -1,5 +1,7 @@
 {
   "dependencies": {
-    "oicq": "^2.3.1"
+    "node-cron": "^3.0.2",
+    "oicq": "^2.3.1",
+    "superagent": "^8.0.9"
   }
 }

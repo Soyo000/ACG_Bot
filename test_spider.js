@@ -1,0 +1,22 @@
+const superagent = require('superagent');
+
+let url = "https://www.douyin.com/user/MS4wLjABAAAAflgvVQ5O1K4RfgUu3k0A2erAZSK7RsdiqPAvxcObn93x2vk4SKk1eUb6l_D4MX-n";
+superagent.get(url).set({
+    'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+    'accept-encoding': 'gzip, deflate, br',
+    'accept-language': 'zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6',
+    'cache-control': 'max-age=0',
+    'cookie': '__ac_referer=__ac_blank; douyin.com; passport_csrf_token=cb3b0d5a2eca32ceff3182f912eb5a63; passport_csrf_token_default=cb3b0d5a2eca32ceff3182f912eb5a63; ttwid=1%7CFLwPI_bo-2hy-ZqHZV2qau72pJGp1-YNfFV1OgaI_c0%7C1675148487%7C32a58cb81df0bd6a2d7f2b5c2e4d5c3467955ebb0b561d94e171bbdce9e7585b; s_v_web_id=verify_ldjw5tnm_lTa4kydB_9Zja_4GFT_BrRs_jOALRVMxZ7In; douyin.com; VIDEO_FILTER_MEMO_SELECT=%7B%22expireTime%22%3A1676360229816%2C%22type%22%3A1%7D; __ac_nonce=063e1ffb8003672366538; __ac_signature=_02B4Z6wo00f01HQtwZAAAIDBgVIrDClHmpx0DcUAAH7yIubdpPumZl.ADHT09H9JLe-.m5HVCXboYtLF7YkQFxXriaenu1OQCzvKBk.zYlpuVc26dbX7wov9zSdWuW6nDrd6giGrEnChrguRb0; SEARCH_RESULT_LIST_TYPE=%22single%22; _tea_utm_cache_2018=undefined; download_guide=%223%2F20230207%22; d_ticket=1bfa872e67df88f2b67ceb91f356e1095117e; passport_assist_user=CkHugfU9vVxfeB36P4wAS1CT6pPO05mO98Gbli3OIfT866OkJ2o57wkxY4HaGoEQv5gITk8WbQT6PHdENE92TatDmRpICjxR1ik6ruq4_naL1UF49hl9Z_GbQrSeM-5zWljZ2ep57GgkwyMahTrz-KEWVbcCWyWVGdTpC6UEwDjzZ-wQ4tOoDRiJr9ZUIgED9J0mjA%3D%3D; n_mh=Uxk-EOycNEkFqKuGAwMTE2BbqB6th7EPSn3wzqZ0yQA; sso_auth_status=c319a1b51f2ff9b6a1a1752fa362db88; sso_auth_status_ss=c319a1b51f2ff9b6a1a1752fa362db88; sso_uid_tt=5e4221d629d1cf1e8b4484b5c19d1951; sso_uid_tt_ss=5e4221d629d1cf1e8b4484b5c19d1951; toutiao_sso_user=19bb93c1e620c34d8129976d0ddacfac; toutiao_sso_user_ss=19bb93c1e620c34d8129976d0ddacfac; sid_ucp_sso_v1=1.0.0-KGUzZjlhOGUwYTg3NTMzM2ViMmMzZGYyOWIwNzBlZWE0NTk2MDY0Y2YKHwiLkKDe2I37BRDZhoifBhjvMSAMMMf54p4GOAJA7AcaAmxmIiAxOWJiOTNjMWU2MjBjMzRkODEyOTk3NmQwZGRhY2ZhYw; ssid_ucp_sso_v1=1.0.0-KGUzZjlhOGUwYTg3NTMzM2ViMmMzZGYyOWIwNzBlZWE0NTk2MDY0Y2YKHwiLkKDe2I37BRDZhoifBhjvMSAMMMf54p4GOAJA7AcaAmxmIiAxOWJiOTNjMWU2MjBjMzRkODEyOTk3NmQwZGRhY2ZhYw; msToken=oUjGfW-AzMaN18bz-drIJkUxM3BwZS0y_TteqSDoKzvX69a9xayGCCGPxXbzXnPgo6cYf4vH08fhPbrLBh4osuR_s-FJ7LHiPbftrpQxAKbLIDRWnW4l; odin_tt=f8611fac92e5abba6d114352e1d1fdfd28d8c429a49843a3e9e6e3d2b809d4a86defdab54d4fad9b6f72443a59cbf04067e9db8e4b44bd04c66d3805b20d5597; passport_auth_status=41d12fe8c6dbd4fd0134f81fa7e64e21%2C6695262ad84218da3b2b63acb4f58faf; passport_auth_status_ss=41d12fe8c6dbd4fd0134f81fa7e64e21%2C6695262ad84218da3b2b63acb4f58faf; uid_tt=dee8ec38071959fe40d4524f965a3eda; uid_tt_ss=dee8ec38071959fe40d4524f965a3eda; sid_tt=d68f3e0547b546c756feeeb4941255f5; sessionid=d68f3e0547b546c756feeeb4941255f5; sessionid_ss=d68f3e0547b546c756feeeb4941255f5; LOGIN_STATUS=1; store-region=cn-js; store-region-src=uid; strategyABtestKey=%221675756379.765%22; sid_guard=d68f3e0547b546c756feeeb4941255f5%7C1675756382%7C5183995%7CSat%2C+08-Apr-2023+07%3A52%3A57+GMT; sid_ucp_v1=1.0.0-KGIxZTNlMjlkMGY3MDQ0ZWFkYzcyZDZjYTJjNjNlMDBlNDU3OTUwMzUKGQiLkKDe2I37BRDehoifBhjvMSAMOAJA7AcaAmxxIiBkNjhmM2UwNTQ3YjU0NmM3NTZmZWVlYjQ5NDEyNTVmNQ; ssid_ucp_v1=1.0.0-KGIxZTNlMjlkMGY3MDQ0ZWFkYzcyZDZjYTJjNjNlMDBlNDU3OTUwMzUKGQiLkKDe2I37BRDehoifBhjvMSAMOAJA7AcaAmxxIiBkNjhmM2UwNTQ3YjU0NmM3NTZmZWVlYjQ5NDEyNTVmNQ; home_can_add_dy_2_desktop=%221%22; msToken=xG1EAWrLzVb_-ngIj_--t-1_-7UE0Ym0KDB873h79hL3sUcPK81MKgR_exCZpAfcpuLWN_c63gDu2jHGgxGr8qZIG5sFQJ5ZffwxWaQDmw_uDdNH4Rt0; tt_scid=lhjdSskiSM3HpcXyHlkevk.E1facGsJhllqlvdFBoqi7YXe9c00epchwaRp9DWci215d; passport_fe_beating_status=false',
+    'referer': 'https://www.douyin.com/user/MS4wLjABAAAAflgvVQ5O1K4RfgUu3k0A2erAZSK7RsdiqPAvxcObn93x2vk4SKk1eUb6l_D4MX-n',
+    'sec-ch-ua': '"Not_A Brand";v="99", "Microsoft Edge";v="109", "Chromium";v="109"',
+    'sec-ch-ua-mobile': '?0',
+    'sec-ch-ua-platform': '"Windows"',
+    'sec-fetch-dest': 'document',
+    'sec-fetch-mode': 'navigate',
+    'sec-fetch-site': 'same-origin',
+    'sec-fetch-user': '?1',
+    'upgrade-insecure-requests': '1',
+    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36 Edg/109.0.1518.78',
+}).end((err,res) => {
+    console.log(res.html);
+})
