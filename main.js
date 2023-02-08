@@ -1,14 +1,13 @@
-const { createClient, Platform } = require("oicq")
+const { createClient, Platform, segment } = require("oicq")
 const account = 2441288014
 const group1 = 519700368
 const group2 = 700458704
 const client = createClient(account)
 const acg = require('./ac_automation');
-const superagent = require('superagent')
-
-// let list = ["嘉然","向晚","乃琳","贝拉","珈乐","asoul","a手",
-//           "嘉心糖","顶碗人","奶淇琳","黄嘉琪","音乐珈","一个魂"];
-
+const main = require('./spider');
+const superagent = require('superagent');
+const cron = require('node-cron');
+const downloadVideo = require('./downloadvideo');
 
 client.on("system.login.qrcode", function (e) {
     //扫码后按回车登录
@@ -39,12 +38,34 @@ client.on("message.group", (event) => {
   }
 });
 
-//设置心跳间隔(单位/秒)
-client.interval = 60;
-//设置心跳函数
-client.heartbeat = () =>{
-  // console.log('run every minute');
-  // let url = "https://www.douyin.com/user/MS4wLjABAAAAflgvVQ5O1K4RfgUu3k0A2erAZSK7RsdiqPAvxcObn93x2vk4SKk1eUb6l_D4MX-n";
-  // superagent.get(url, (err,res) => {
-  // })
-};
+//定时任务，从抖音用户界面更新视频数据，如果有新视频就下载到本地并发送
+cron.schedule("08 * * * *", () => {
+  console.log('start');
+  (async () => {
+    let boolean = await main();
+    if(boolean === false){
+      return;
+    }
+    let str = await downloadVideo();
+    let msg = segment.video(`./video${str}.mp4`);
+    //发送视频需要ffmpeg
+    client.sendGroupMsg(group2,msg).then(() => {
+      console.log('Video sent successfully.');
+    }).catch((reason) => {
+      console.log(reason);
+    })
+  })(); 
+});
+
+// //设置心跳间隔(单位/秒)
+// client.interval = 360;
+// //设置心跳函数
+// client.heartbeat = () =>{
+//   let msg = segment.video('/video.mp4');
+//   //发送视频需要ffmpeg
+//   client.sendGroupMsg(group1,msg).then(() => {
+//     console.log('success')
+//   }).catch((reason) => {
+//     console.log(reason);
+//   })
+// };

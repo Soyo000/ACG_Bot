@@ -1,6 +1,6 @@
 const cron = require('node-cron');
 
 //定时任务
-cron.schedule("* * * * *", () => {
+cron.schedule("* 18 * * *", () => {
     console.log('run every minute');
 })
