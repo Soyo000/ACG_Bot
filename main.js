@@ -39,7 +39,7 @@ client.on("message.group", (event) => {
 });
 
 //定时任务，从抖音用户界面更新视频数据，如果有新视频就下载到本地并发送
-cron.schedule("08 * * * *", () => {
+cron.schedule("39 * * * *", () => {
   console.log('start');
   (async () => {
     let boolean = await main();
@@ -49,7 +49,7 @@ cron.schedule("08 * * * *", () => {
     let str = await downloadVideo();
     let msg = segment.video(`./video${str}.mp4`);
     //发送视频需要ffmpeg
-    client.sendGroupMsg(group2,msg).then(() => {
+    client.sendGroupMsg(group1,msg).then(() => {
       console.log('Video sent successfully.');
     }).catch((reason) => {
       console.log(reason);

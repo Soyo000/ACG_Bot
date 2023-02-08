@@ -2,14 +2,17 @@ const puppeteer = require('puppeteer');
 const cron = require('node-cron');
 const fs = require('fs');
 const path = require('path');
-const fileName = path.resolve(__dirname,'data.json')
+const fileName = path.resolve(__dirname,'data.json');
+
+//需要监控的用户抖音主页url
+const user_url = "https://www.douyin.com/user/MS4wLjABAAAAeqs9l9i0gqIHMdb9CML6RmuliGW11J03Zb_3FeIMLkj3fg-6KEPkYth-7sfanVT8";
 
 //获取作品总数
 async function getAsoulVideoNum() {
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
     await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36 Edg/109.0.1518.78');
-    await page.goto('https://www.douyin.com/user/MS4wLjABAAAAflgvVQ5O1K4RfgUu3k0A2erAZSK7RsdiqPAvxcObn93x2vk4SKk1eUb6l_D4MX-n',{ waitUntil: "load", timeout: 60000 });
+    await page.goto(user_url,{ waitUntil: "load", timeout: 60000 });
   // 用js获取节点
     const getNum = page.evaluate(() => {
         const textDom = document.getElementsByClassName('J6IbfgzH')[0];
@@ -25,7 +28,7 @@ async function getVideoHref(){
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
     await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36 Edg/109.0.1518.78');
-    await page.goto('https://www.douyin.com/user/MS4wLjABAAAAflgvVQ5O1K4RfgUu3k0A2erAZSK7RsdiqPAvxcObn93x2vk4SKk1eUb6l_D4MX-n',{ waitUntil: "load", timeout: 60000 });
+    await page.goto(user_url,{ waitUntil: "load", timeout: 60000 });
     
     //模拟页面下拉
     // (async function f(){
