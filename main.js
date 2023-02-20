@@ -1,13 +1,14 @@
-const { createClient, Platform, segment } = require("oicq")
+const { createClient, segment } = require("oicq")
 const account = 2441288014
 const group1 = 519700368
 const group2 = 700458704
 const client = createClient(account)
-const acg = require('./ac_automation');
-const main = require('./spider');
-const superagent = require('superagent');
+// const superagent = require('superagent');
 const cron = require('node-cron');
-const downloadVideo = require('./downloadvideo');
+// const ffmpeg = require('fluent-ffmpeg');
+const acg = require('./plugins/ac_automation');
+const main = require('./plugins/spider');
+const downloadVideo = require('./plugins/downloadvideo');
 
 client.on("system.login.qrcode", function (e) {
     //扫码后按回车登录
@@ -38,14 +39,14 @@ client.on("message.group", (event) => {
   }
 });
 
-//定时任务，从抖音用户界面更新视频数据，如果有新视频就下载到本地并发送
-cron.schedule("39 * * * *", () => {
+// //定时任务，从抖音用户界面更新视频数据，如果有新视频就下载到本地并发送
+cron.schedule("* * * * *", () => {
   console.log('start');
   (async () => {
     let boolean = await main();
-    if(boolean === false){
-      return;
-    }
+    // if(boolean === false){
+    //   return;
+    // }
     let str = await downloadVideo();
     let msg = segment.video(`./video${str}.mp4`);
     //发送视频需要ffmpeg
@@ -69,3 +70,23 @@ cron.schedule("39 * * * *", () => {
 //     console.log(reason);
 //   })
 // };
+
+// cron.schedule("* * * * *", () => {
+
+  // ffmpeg("input.mp3")
+  // .toFormat("amr")
+  // .on("error", function(err) {
+  //   console.log("An error occurred: " + err.message);
+  // })
+  // .on("end", function() {
+  //   console.log("Transcoding succeeded!");
+  // })
+  // .save("output.amr");
+
+  // let msg = segment.record('./m4a/给永雏塔菲送米喵，给永雏塔菲送米谢谢喵-Reward Taffy Please-经典名言-20220404_AAC.m4a');
+  // client.sendGroupMsg(group1, msg).then(() => {
+  //   console.log('success');
+  // }).catch((reason) => {
+  //   console.log(reason);
+  // })
+// })
