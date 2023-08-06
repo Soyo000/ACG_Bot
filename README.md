@@ -1,8 +1,8 @@
-# asoul粉丝向机器人
-基于oicq框架实现，用于QQ群聊
+# asoul bot
+build with oicq(a tencent qq bot framework) framework
 
-目前还在修改中
+It's still being revised.
 
-已实现功能:
-* 脑洞波视频推送
-* 检测群聊关键词并自动回复
+TODO:
+* push naodongbo videos
+* check keywords and auto-reply
